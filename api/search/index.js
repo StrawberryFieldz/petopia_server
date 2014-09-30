@@ -6,6 +6,8 @@ var controller = require('./search.controller.js');
 var router = express.Router();
 
 router.get('/', controller.index);
-router.get('/:city', controller.byCity);
+router.get('/location/:location', controller.byLocation);
+router.get('/cost/:cost', controller.byCost);
+router.get('/rating/:rating', controller.byRating);
 
 module.exports = router;
