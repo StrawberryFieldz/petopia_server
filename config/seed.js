@@ -1,4 +1,6 @@
-module.exports = {
+module.exports = {};
+
+module.exports.search = {
   0: {
     name: "Tyler",
     location: "San Francisco",
@@ -46,5 +48,20 @@ module.exports = {
     photo: "http://static.ddmcdn.com/gif/dog-breed-dog-breed-pictures1.jpg",
     cost: 65,
     rating: 3
+  }
+};
+
+module.exports.users = {
+  0: {
+    username: 'Bandit',
+    password: 'jeff'
+  },
+  1: {
+    username: 'Yoshi',
+    password: 'mario'
+  },
+  2: {
+    username: 'Lincoln',
+    password: 'honestabe'
   }
 };
