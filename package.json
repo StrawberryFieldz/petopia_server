@@ -5,7 +5,10 @@
   "dependencies": {
     "express": "~4.0.0",
     "nodemon": "^1.2.1",
-    "gulp": "^3.8.8"
+    "gulp": "^3.8.8",
+    "passport": "^0.2.1",
+    "passport-facebook": "1.0.3",
+    "passport-local": "1.0.0"
   },
   "devDependencies": {
     "gulp-install": "^0.2.0",
