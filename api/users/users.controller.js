@@ -1,8 +1,9 @@
 'use strict';
 
-var Users = require('../../config/seed.js').users;
+// var Users = require('../../config/seed.js').users;
+var Users = require('../../sql/tables/db_users.js');
 
-exports.index = function(request, response) {
+exports.byUserId = function(request, response) {
   var results = {
     users: []
   };
@@ -16,17 +17,30 @@ exports.index = function(request, response) {
   return response.json(200, results);
 };
 
-exports.byUsername = function(request, response){
-  var results = {
-    user: []
-  };
+exports.findUser = function(request, response){
+  var userEmail = request.body.email;
 
-  for(var key in Users){
-    if(Users[key].username === request.params.username){
-      results.user.push({ username: Users[key].username });
-      return response.json(200, results);
+  Users.checkUser(userEmail, function(err, results){
+    if(err){
+      return response.json(200, 'User does not exist.');
+    } else {
+      return response.json(200, 'User ' + results + 'exists.');
     }
-  }
+  });
 
-  return response.json(200, 'User does not exist.');
+};
+
+exports.createUser  = function(request, response){
+  var user = {
+    firstName: request.body.firstName,
+    lastName: request.body.lastName,
+    password: request.body.password,
+    email: request.body.email
+  };
+  console.log(request);
+
+  Users.saveUser(user, function(err, results){
+    return response.json(200, 'User succesfully saved to database.');
+  });
+
 };
