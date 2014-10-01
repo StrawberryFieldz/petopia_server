@@ -33,4 +33,3 @@ gulp.task('build', function(callback){
   runSequence('install', 'lint', 'serve', 'watch');
 });
 
-gulp.task('deploy', ['serve']);

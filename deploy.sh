@@ -107,9 +107,7 @@ selectNodeVersion
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then  
   eval $NPM_CMD install  
   exitWithMessageOnError "npm failed"  
-fi  
-  
-  
+fi   
   
 # 3. KuduSync to Target  
 "$KUDU_SYNC_CMD" -v 500 -f "$DEPLOYMENT_SOURCE" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"  
