@@ -18,6 +18,7 @@
     "gulp-install": "^0.2.0",
     "gulp-jshint": "^1.8.4",
     "gulp-nodemon": "^1.0.4",
+    "gulp-load-plugins": "^0.6.0",
     "jshint-stylish": "^1.0.0",
     "requirejs": "~2.1.11",
     "run-sequence": "^1.0.0"
