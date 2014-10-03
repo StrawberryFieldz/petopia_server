@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 
 var app = express();
 var port = process.env.PORT || 8080;
+var mongooseConnectionString = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://localhost/petopia-db';
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -32,7 +33,7 @@ app.use(session({ secret: 'theBanditIsWatching' }));
 require('./auth/local/passport.js')();
 require('./routes.js')(app, passport);
 
-mongoose.connect('mongodb://localhost/petopia-db');
+mongoose.connect(mongooseConnectionString);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(){
