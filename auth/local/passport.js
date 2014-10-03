@@ -25,9 +25,7 @@ module.exports = function(){
       if(!user) {
         return done(null, false, { message: 'Invalid username' });
       } else {
-        console.log("PASSWORD: ", password);
-        console.log("USER.PASSWORD: ", user.password);
-        if(user.password === password) {
+        if(User.validatePassword(password, user.password)) {
           return done(null, user);
         } else {
           return done(null, false, { message: 'Invalid password' });
