@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 
 var userSchema = mongoose.Schema({
   username: String,
@@ -6,20 +7,31 @@ var userSchema = mongoose.Schema({
 });
 
 var User = mongoose.model('User', userSchema);
+
 module.exports.User = User;
 
 module.exports.signupUser = function(newUser, cb){
 
+  var password = hashPassword(newUser.password);
+  console.log("HASHED ON SIGNUP: ", password);
+
   var user = new User({
     username: newUser.username,
-    password: newUser.password
+    password: password
   });
 
   user.save(function(err, user){
     if(err){
       return err;
     }
-    console.log("got to signup")
     return cb(null, user);
   });
+};
+
+module.exports.validatePassword = function(password, userSchemaPassword) {
+  return bcrypt.compareSync(password, userSchemaPassword); 
+};
+
+var hashPassword = function(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
 };

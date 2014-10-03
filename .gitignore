@@ -2,3 +2,4 @@ node_modules
 .DS_Store
 iisnode.yml
 azure.err
+npm-debug.log
