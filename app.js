@@ -6,6 +6,7 @@ var methodOverride = require('method-override');
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var mongoose = require('mongoose');
 
 var app = express();
 var port = process.env.PORT || 8080;
@@ -30,6 +31,13 @@ app.use(passport.session());
 app.use(session({ secret: 'theBanditIsWatching' }));
 require('./auth/local/passport.js')();
 require('./routes.js')(app, passport);
+
+mongoose.connect('mongodb://localhost/petopia-db');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function(){
+  console.log('db connected.');
+});
 
 var server = require('http').createServer(app);
 
