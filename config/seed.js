@@ -53,15 +53,15 @@ module.exports.search = {
 
 module.exports.users = {
   0: {
-    username: 'Bandit',
+    username: 'Bandit@gmail.com',
     password: 'jeff'
   },
   1: {
-    username: 'Yoshi',
+    username: 'Yoshi@yahoo.com',
     password: 'mario'
   },
   2: {
-    username: 'Lincoln',
+    username: 'Lincoln@usa.gov',
     password: 'honestabe'
   }
 };
