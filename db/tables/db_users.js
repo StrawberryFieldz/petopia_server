@@ -13,7 +13,6 @@ module.exports.User = User;
 module.exports.signupUser = function(newUser, cb){
 
   var password = hashPassword(newUser.password);
-  console.log("HASHED ON SIGNUP: ", password);
 
   var user = new User({
     username: newUser.username,
