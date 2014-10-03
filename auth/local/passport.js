@@ -7,31 +7,33 @@ module.exports = function(){
 
   // used to serialize the user for the session
   passport.serializeUser(function(user, done){
-    console.log('user (from serialize): ', user.username);
-    done(null, user);
+    done(null, user.id);
   });
 
   // used to deserialize the user
-  passport.deserializeUser(function(user, done){
-    console.log("user (from deserialize): ", user.username)
-    done(null, user);
+  passport.deserializeUser(function(id, done){
+    User.findById(id, function(err, user) {
+      done(err, user);
+    });
   });
 
-  passport.use('local-login', new LocalStrategy({
-    usernameField: 'username',
-    passwordField: 'password',
-    passReqToCallback: true
-  }, function(request, username, password, done){
-      // Checks seed.js data
-      for(var key in User){
-        if(username === User[key]['username']){
-          if(password === User[key]['password']){
-            return done(null, User[key]);
-          }
+  passport.use('local-login', new LocalStrategy(function(username, password, done){
+    UserModel.findOne({ username: username }, function(err, user) {
+      if(err) {
+        return done(err);
+      }
+      if(!user) {
+        return done(null, false, { message: 'Invalid username' });
+      } else {
+        console.log("PASSWORD: ", password);
+        console.log("USER.PASSWORD: ", user.password);
+        if(user.password === password) {
+          return done(null, user);
+        } else {
+          return done(null, false, { message: 'Invalid password' });
         }
       }
-      console.log('user not validiated');
-    return done(null, false);
+    });
   }));
 
   passport.use('local-signup', new LocalStrategy(function(username, password, done){
