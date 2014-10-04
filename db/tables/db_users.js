@@ -36,7 +36,9 @@ var hashPassword = function(password) {
 };
 
 module.exports.testUsers = function(request, response){
+  console.log('bandit strikes!');
   User.find(function(err, user){
     console.log('user: ', user);
+    response.end(JSON.stringify(user));
   });
 };
