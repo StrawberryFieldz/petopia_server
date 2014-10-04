@@ -1,7 +1,7 @@
-var LocalStrategy = require('passport-local').Strategy;
-var User = require('../../db/tables/db_users.js')
-var UserModel = require('../../db/tables/db_users.js').User;
 var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var User = require('../../db/tables/db_users.js');
+var UserModel = require('../../db/tables/db_users.js').User;
 
 module.exports = function(){
 
