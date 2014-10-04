@@ -34,3 +34,9 @@ module.exports.validatePassword = function(password, userSchemaPassword) {
 var hashPassword = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
 };
+
+module.exports.testUsers = function(request, response){
+  User.find(function(err, user){
+    console.log('user: ', user);
+  });
+};
