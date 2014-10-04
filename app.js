@@ -31,6 +31,7 @@ app.use(passport.session());
 
 app.use(session({ secret: 'theBanditIsWatching' }));
 require('./auth/local/passport.js')();
+require('./auth/facebook/passport.js')();
 require('./routes.js')(app, passport);
 
 mongoose.connect(mongooseConnectionString);
