@@ -35,22 +35,22 @@ module.exports = function(){
   }));
 
   passport.use('local-signup', new LocalStrategy(function(username, password, done){
-      UserModel.findOne({ username: username }, function(err, user){
-        if(err){
-          return done(err);
-        }
-        if(user){
-          return done(null, false, { message: 'Username already exists.' });
-        } else {
-          var newUser = {
-            username: username,
-            password: password
-          };
+    console.log("ASSHOLE SIGNUP")
+    UserModel.findOne({ username: username }, function(err, user){
+      if(err){
+        return done(err);
+      }
+      if(user){
+        return done(null, false, { message: 'Username already exists.' });
+      } else {
+        var newUser = {
+          username: username,
+          password: password
+        };
 
-          User.signupUser(newUser, done);
-        }
-      });
-    }
-  ));
+        User.signupUser(newUser, done);
+      }
+    });
+  }));
 
 };
