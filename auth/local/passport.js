@@ -35,7 +35,6 @@ module.exports = function(){
   }));
 
   passport.use('local-signup', new LocalStrategy(function(username, password, done){
-    console.log("ASSHOLE SIGNUP")
     UserModel.findOne({ username: username }, function(err, user){
       if(err){
         return done(err);
