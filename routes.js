@@ -4,8 +4,13 @@ module.exports = function(app, passport) {
 
   app.use('/api/search', require('./api/search'));
 
-  app.post('/signup', passport.authenticate('local-signup'));
-  app.post('/login', passport.authenticate('local-login'));
+  app.post('/signup', passport.authenticate('local-signup'), function(request, response) {
+    response.send(200);
+  });
+
+  app.post('/login', passport.authenticate('local-login'), function(request, response) {
+    response.send(200);
+  });
 
   app.get('/facebook/login', passport.authenticate('facebook'));
   app.get('/facebook/redirect', function(req, res, next) {
