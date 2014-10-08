@@ -8,9 +8,9 @@ exports.index = function(request, response) {
 
 exports.byLocation = function(request, response) {
   var results = [];
-  var resultsKey = request.params.location;
+  var location = request.params.location.toLowerCase();
   for(var key in Search) {
-    if(Search[key].location === request.params.location) {
+    if(Search[key].location.toLowerCase() === location) {
       results.push(Search[key]);
     }
   }
