@@ -7,12 +7,11 @@ exports.index = function(request, response) {
 };
 
 exports.byLocation = function(request, response) {
-  var results = {};
+  var results = [];
   var resultsKey = request.params.location;
-  results[resultsKey] = [];
   for(var key in Search) {
     if(Search[key].location === request.params.location) {
-      results[resultsKey].push(Search[key]);
+      results.push(Search[key]);
     }
   }
   return response.json(200, results);
