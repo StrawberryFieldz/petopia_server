@@ -12,6 +12,11 @@ module.exports = function(app, passport) {
     response.send(200);
   });
 
+  app.get('/logout', function(request, response){
+    request.logout();
+    response.send(200);
+  });
+
   app.get('/facebook/login', passport.authenticate('facebook'));
   app.get('/facebook/redirect', function(req, res, next) {
     console.log("in redirect: ", req.url, req.body); next(); 
