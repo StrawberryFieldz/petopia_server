@@ -20,7 +20,7 @@ var userSchema = mongoose.Schema({
   //sitter profile info
   isSitter: Boolean,
   location: String,
-  zip: Number,
+  zip: String,
   photo: String,
   cost: Number,
   rating: Number,
