@@ -17,17 +17,19 @@ var userSchema = mongoose.Schema({
     },
     message: String
   }],
-  sitterProfile: {
-    isSitter: Boolean,
-    location: String,
-    zip: Number,
-    photo: String,
-    cost: Number,
-    rating: Number,
-    bio: String,
-    dogs: Boolean,
-    cats: Boolean,
-    currentRating: Number
+  //sitter profile info
+  isSitter: Boolean,
+  location: String,
+  zip: Number,
+  photo: String,
+  cost: Number,
+  rating: Number,
+  bio: String,
+  dogs: Boolean,
+  cats: Boolean,
+  rating: {
+    currentRating: Number,
+    totalRatings: Number
   },
   pets:[{
     imageUrl: String,
@@ -63,6 +65,20 @@ module.exports.signupUser = function(newUser, cb){
     return cb(null, user);
   });
 };
+
+module.exports.setRating = function(username, newRating){
+  User.find({
+    username:username
+  }, function(err, user){
+    user.rating.currentRating = (user.rating.currentRating + newRating)/(++user.rating.totalRatings);
+    user.save(function(err){
+      if(err) console.log("Failed to set rating.")
+      else{
+        console.log('Rating was successfully saved.')
+      }
+    })
+  });
+}
 
 module.exports.validatePassword = function(password, userSchemaPassword) {
   return bcrypt.compareSync(password, userSchemaPassword); 

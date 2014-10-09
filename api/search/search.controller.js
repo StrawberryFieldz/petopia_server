@@ -1,3 +1,6 @@
+var User = require('../../db/tables/db_users.js');
+var UserModel = require('../../db/tables/db_users.js').User;
+
 'use strict';
 
 var Search = require('../../config/seed.js').search;
