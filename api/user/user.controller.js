@@ -28,10 +28,11 @@ exports.registerSitterInfo = function(request, response){
       if(user){
         var userInfo = request.body;
         console.log("About to add userInfo to database:", userInfo);
-        user.isSitter = userInfo.isSitter;
+        user.isSitter = true;
         user.location = userInfo.location;
         user.zip = userInfo.zip;
         user.cost = userInfo.cost;
+        user.photo = 'http://www.gurucul.com/wp-content/uploads/2014/02/anonymous-user.png';
         user.rating = userInfo.rating;
         user.bio = userInfo.bio;
         user.dogs = userInfo.dogs
