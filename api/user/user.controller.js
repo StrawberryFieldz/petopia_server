@@ -23,7 +23,6 @@ exports.registerSitterInfo = function(request, response){
       if(err){
         console.log("omg err", err)
         response.send(404);
-        return done(err);
       }
       if(user){
         var userInfo = request.body;
@@ -40,6 +39,8 @@ exports.registerSitterInfo = function(request, response){
         user.save(function(err){
           if(err) console.log("There was an error saving the new user info.")
         });
+
+        response.send(200);
       }else{
         console.log("User not found.")
         response.send(404);
