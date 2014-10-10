@@ -18,6 +18,7 @@ var userSchema = mongoose.Schema({
   }],
   //sitter profile info
   isSitter: Boolean,
+  name: String,
   location: String,
   zip: String,
   photo: String,
@@ -53,7 +54,8 @@ module.exports.signupUser = function(newUser, cb){
 
   var user = new User({
     username: newUser.username,
-    password: password
+    password: password,
+    photo: 'http://www.gurucul.com/wp-content/uploads/2014/02/anonymous-user.png'
   });
 
   user.save(function(err, user){
