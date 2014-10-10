@@ -22,8 +22,6 @@ exports.storeMessage = function(request, response){
 }
 
 exports.storeTransaction = function(request, response){
-  console.log('User: ', request.params.username)
-  console.log('Transaction sent:', request.body);
   UserModel.findOne({username: request.params.username}, function(err,user){
     if(err){
       console.log("Unable to store transaction", err);
