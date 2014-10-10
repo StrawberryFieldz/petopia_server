@@ -2,8 +2,8 @@
 
 module.exports = function(app, passport) {
   app.use('/api/search', require('./api/search'));
-  app.use('/api/user', require('./api/user'));
-  
+  app.use('/api/users', require('./api/user'));
+
 
   app.post('/signup', passport.authenticate('local-signup'), function(request, response) {
     response.send(200);

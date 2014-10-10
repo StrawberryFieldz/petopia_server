@@ -17,11 +17,38 @@ exports.byUsername = function(request, response){
   });
 };
 
+exports.storeMessage = function(request, response){
+  console.log(request.body);
+}
+
+exports.storeTransaction = function(request, response){
+  console.log('User: ', request.params.username)
+  console.log('Transaction sent:', request.body);
+  UserModel.findOne({username: request.params.username}, function(err,user){
+    if(err){
+      console.log("Unable to store transaction", err);
+      response.send(404);
+    }
+    if(user){
+      var newTransaction = request.body;
+      user.transactions.push(newTransaction);
+      user.save(function(err){
+        if(err) console.log("There was an error saving the new user info.")
+      });
+
+      response.send(202);
+    }else{
+      console.log("Transaction not stored: User was not found");
+      response.send(404);
+    }
+  });
+}
+
 exports.registerSitterInfo = function(request, response){
   console.log(request.body);
   UserModel.findOne({ username: request.params.username }, function(err, user){
       if(err){
-        console.log("omg err", err)
+        console.log("Unable to register sitter info", err);
         response.send(404);
       }
       if(user){
