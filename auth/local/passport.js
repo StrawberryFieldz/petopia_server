@@ -44,7 +44,8 @@ module.exports = function(){
       } else {
         var newUser = {
           username: username,
-          password: password
+          password: password,
+          photo: 'http://www.gurucul.com/wp-content/uploads/2014/02/anonymous-user.png'
         };
 
         User.signupUser(newUser, done);
