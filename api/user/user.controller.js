@@ -17,11 +17,53 @@ exports.byUsername = function(request, response){
   });
 };
 
+exports.storeMessage = function(request, response){
+  UserModel.findOne({username: request.params.username}, function(err,user){
+    if(err){
+      console.log("Unable to store message", err);
+      response.send(404);
+    }
+    if(user){
+      var newMessage = request.body;
+      user.receivedMessages.push(newMessage);
+      user.save(function(err){
+        if(err) console.log("There was an error saving the new message.")
+      });
+
+      response.send(202);
+    }else{
+      console.log("Message not stored: User was not found");
+      response.send(404);
+    }
+  });
+}
+
+exports.storeTransaction = function(request, response){
+  UserModel.findOne({username: request.params.username}, function(err,user){
+    if(err){
+      console.log("Unable to store transaction", err);
+      response.send(404);
+    }
+    if(user){
+      var newTransaction = request.body;
+      user.transactions.push(newTransaction);
+      user.save(function(err){
+        if(err) console.log("There was an error saving the new user info.")
+      });
+
+      response.send(202);
+    }else{
+      console.log("Transaction not stored: User was not found");
+      response.send(404);
+    }
+  });
+}
+
 exports.registerSitterInfo = function(request, response){
   console.log(request.body);
   UserModel.findOne({ username: request.params.username }, function(err, user){
       if(err){
-        console.log("omg err", err)
+        console.log("Unable to register sitter info", err);
         response.send(404);
       }
       if(user){
@@ -31,7 +73,6 @@ exports.registerSitterInfo = function(request, response){
         user.location = userInfo.location;
         user.zip = userInfo.zip;
         user.cost = userInfo.cost;
-        user.photo = 'http://www.gurucul.com/wp-content/uploads/2014/02/anonymous-user.png';
         user.rating = userInfo.rating;
         user.bio = userInfo.bio;
         user.dogs = userInfo.dogs

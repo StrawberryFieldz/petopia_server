@@ -5,7 +5,6 @@ var userSchema = mongoose.Schema({
   username: String,
   password: String,
   receivedMessages:[{
-    userID: String,
     userName: String,
     petTypes:{
       dog: Boolean,
@@ -35,11 +34,10 @@ var userSchema = mongoose.Schema({
     imageUrl: String,
     petName: String
   }],
-  transaction: [{
+  transactions: [{
     otherUser: String, //user that bought or sold from current user
-    otherUserID: String,// other user's id
-    type: String, // type of transaction (buy/sell)
-    value: Number, // how much the transaction cost
+    type: String, // type of transaction (hired/watched)
+    cost: Number, // how much the transaction cost
     isRated: Boolean // if transaction has already been rated
   }]
 
