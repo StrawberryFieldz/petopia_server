@@ -70,6 +70,7 @@ exports.registerSitterInfo = function(request, response){
         var userInfo = request.body;
         console.log("About to add userInfo to database:", userInfo);
         user.isSitter = true;
+        user.name = userInfo.name;
         user.location = userInfo.location;
         user.zip = userInfo.zip;
         user.cost = userInfo.cost;
