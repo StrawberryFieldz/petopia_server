@@ -18,7 +18,24 @@ exports.byUsername = function(request, response){
 };
 
 exports.storeMessage = function(request, response){
-  console.log(request.body);
+  UserModel.findOne({username: request.params.username}, function(err,user){
+    if(err){
+      console.log("Unable to store message", err);
+      response.send(404);
+    }
+    if(user){
+      var newMessage = request.body;
+      user.receivedMessages.push(newMessage);
+      user.save(function(err){
+        if(err) console.log("There was an error saving the new message.")
+      });
+
+      response.send(202);
+    }else{
+      console.log("Message not stored: User was not found");
+      response.send(404);
+    }
+  });
 }
 
 exports.storeTransaction = function(request, response){

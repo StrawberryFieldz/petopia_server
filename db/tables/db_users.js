@@ -5,7 +5,6 @@ var userSchema = mongoose.Schema({
   username: String,
   password: String,
   receivedMessages:[{
-    userID: String,
     userName: String,
     petTypes:{
       dog: Boolean,
