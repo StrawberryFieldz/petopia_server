@@ -24,7 +24,6 @@ exports.storeMessage = function(request, response){
       response.send(404);
     }
     if(user){
-      console.log("User: "+user)
       var newMessage = request.body;
       user.receivedMessages.push(newMessage);
       user.save(function(err){
@@ -69,7 +68,6 @@ exports.registerSitterInfo = function(request, response){
       }
       if(user){
         var userInfo = request.body;
-        console.log("About to add userInfo to database:", userInfo);
         user.isSitter = true;
         user.name = userInfo.name;
         user.location = userInfo.location;
