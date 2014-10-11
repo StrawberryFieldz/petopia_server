@@ -24,10 +24,11 @@ exports.storeMessage = function(request, response){
       response.send(404);
     }
     if(user){
+      console.log("User: "+user)
       var newMessage = request.body;
       user.receivedMessages.push(newMessage);
       user.save(function(err){
-        if(err) console.log("There was an error saving the new message.")
+        if(err) console.log("There was an error saving the new message.",err)
       });
 
       response.send(202);
