@@ -36,10 +36,10 @@ var userSchema = mongoose.Schema({
     petName: String
   }],
   transactions: [{
-    otherUser: String, //user that bought or sold from current user
-    type: String, // type of transaction (hired/watched)
-    cost: Number, // how much the transaction cost
-    isRated: Boolean // if transaction has already been rated
+    transaction_name: String, //user that bought or sold from current user
+    transaction_type: String, // type of transaction (hired/watched)
+    transaction_cost: Number, // how much the transaction cost
+    transaction_isRated: Boolean // if transaction has already been rated
   }]
 
 });
